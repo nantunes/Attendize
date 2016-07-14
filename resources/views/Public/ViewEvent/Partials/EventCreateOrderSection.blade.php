@@ -75,16 +75,19 @@
                     </div>
                 </div>
 
-                <div class="p20 pl0">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-xs" id="mirror_buyer_info">
-                        Copiar informação de contacto para a primeira inscrição
-                    </a>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             {!! Form::label("order_phone", 'Telefone') !!}
                             {!! Form::text("order_phone", null, ['required' => 'required', 'class' => 'form-control']) !!}
                         </div>
                     </div>
+                </div>
+
+                <div class="p20 pl0">
+                    <a href="javascript:void(0);" class="btn btn-primary btn-xs" id="mirror_buyer_info">
+                        Copiar informação de contacto para a primeira inscrição
+                    </a>
                 </div>
 
                 <div class="row">
@@ -216,7 +219,7 @@
                 @endif
 
                {!! Form::hidden('is_embedded', $is_embedded) !!}
-               {!! Form::submit('Checkout', ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
+               {!! Form::submit('Inscrever', ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
 
             </div>
         </div>

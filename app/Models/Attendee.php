@@ -25,7 +25,7 @@ class Attendee extends MyBaseModel
     protected $fillable = [
         'first_name',
         'last_name',
-        'email',
+        'age',
         'event_id',
         'order_id',
         'ticket_id',

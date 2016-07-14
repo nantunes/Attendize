@@ -37,8 +37,8 @@ class OrderCompletedListener implements ShouldQueue
          * Generate the PDF tickets and send notification emails etc.
          */
         Log::info('Begin Processing Order: ' . $event->order->order_reference);
-        $this->dispatchNow(new GenerateTicket($event->order->order_reference));
-        $this->dispatch(new SendOrderTickets($event->order));
+        //$this->dispatchNow(new GenerateTicket($event->order->order_reference));
+        //$this->dispatch(new SendOrderTickets($event->order));
         $this->dispatch(new SendOrderNotification($event->order));
 
     }
