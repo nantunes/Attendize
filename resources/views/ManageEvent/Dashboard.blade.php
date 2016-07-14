@@ -270,7 +270,7 @@
 
 
                         <li class="rrssb-email">
-                            <a href="mailto:?subject=Check This Out&body={{urlencode($event->event_url)}}?utm_source=email">
+                            <a href="mailto:?subject={{urlencode($event->title)}}&body={{urlencode($event->event_url)}}?utm_source=email">
                             <span class="rrssb-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
