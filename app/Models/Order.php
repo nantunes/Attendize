@@ -19,6 +19,7 @@ class Order extends MyBaseModel
         'order_first_name' => ['required'],
         'order_last_name'  => ['required'],
         'order_email'      => ['required', 'email'],
+        'order_phone'      => ['required'],
     ];
 
     /**
@@ -27,9 +28,11 @@ class Order extends MyBaseModel
      * @var array $messages
      */
     public $messages = [
-        'order_first_name.required' => 'Please enter a valid first name',
-        'order_last_name.required'  => 'Please enter a valid last name',
-        'order_email.email'         => 'Please enter a valid email',
+        'order_first_name.required' => 'Insira o primeiro nome',
+        'order_last_name.required'  => 'Insira o último nome',
+        'order_email.required'      => 'Insira um e-mail inválido',
+        'order_email.email'         => 'Insira um e-mail inválido',
+        'order_phone.required'      => 'Insira um contacto telefónico',
     ];
 
     /**

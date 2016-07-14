@@ -154,12 +154,10 @@ class EventCheckoutController extends Controller
                  */
                 $validation_rules['ticket_holder_first_name.' . $i . '.' . $ticket_id] = ['required'];
                 $validation_rules['ticket_holder_last_name.' . $i . '.' . $ticket_id] = ['required'];
-                $validation_rules['ticket_holder_email.' . $i . '.' . $ticket_id] = ['required', 'email'];
+                $validation_rules['ticket_holder_age.' . $i . '.' . $ticket_id] = [];
 
-                $validation_messages['ticket_holder_first_name.' . $i . '.' . $ticket_id . '.required'] = 'Ticket holder ' . ($i + 1) . '\'s first name is required';
-                $validation_messages['ticket_holder_last_name.' . $i . '.' . $ticket_id . '.required'] = 'Ticket holder ' . ($i + 1) . '\'s last name is required';
-                $validation_messages['ticket_holder_email.' . $i . '.' . $ticket_id . '.required'] = 'Ticket holder ' . ($i + 1) . '\'s email is required';
-                $validation_messages['ticket_holder_email.' . $i . '.' . $ticket_id . '.email'] = 'Ticket holder ' . ($i + 1) . '\'s email appears to be invalid';
+                $validation_messages['ticket_holder_first_name.' . $i . '.' . $ticket_id . '.required'] = 'Inscrição ' . ($i + 1) . ': Indique o primeiro nome';
+                $validation_messages['ticket_holder_last_name.' . $i . '.' . $ticket_id . '.required'] = 'Inscrição ' . ($i + 1) . ': Indique o último nome';
 
                 /*
                  * Validation rules for custom questions
@@ -168,7 +166,7 @@ class EventCheckoutController extends Controller
 
                     if ($question->is_required && $question->is_enabled) {
                         $validation_rules['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id] = ['required'];
-                        $validation_messages['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id . '.required'] = "This question is required";
+                        $validation_messages['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id . '.required'] = "Por favor responda";
                     }
 
                 }
@@ -180,7 +178,7 @@ class EventCheckoutController extends Controller
         if (empty($tickets)) {
             return response()->json([
                 'status'  => 'error',
-                'message' => 'No tickets selected.',
+                'message' => 'Nenhuma inscrição.',
             ]);
         }
 
@@ -495,6 +493,7 @@ class EventCheckoutController extends Controller
             $order->first_name = $request_data['order_first_name'];
             $order->last_name = $request_data['order_last_name'];
             $order->email = $request_data['order_email'];
+            $order->phone = $request_data['order_phone'];
             $order->order_status_id = isset($request_data['pay_offline']) ? config('attendize.order_awaiting_payment') : config('attendize.order_complete');
             $order->amount = $ticket_order['order_total'];
             $order->booking_fee = $ticket_order['booking_fee'];
@@ -573,7 +572,7 @@ class EventCheckoutController extends Controller
                     $attendee = new Attendee();
                     $attendee->first_name = $request_data["ticket_holder_first_name"][$i][$attendee_details['ticket']['id']];
                     $attendee->last_name = $request_data["ticket_holder_last_name"][$i][$attendee_details['ticket']['id']];
-                    $attendee->email = $request_data["ticket_holder_email"][$i][$attendee_details['ticket']['id']];
+                    $attendee->age = $request_data["ticket_holder_age"][$i][$attendee_details['ticket']['id']];
                     $attendee->event_id = $event_id;
                     $attendee->order_id = $order->id;
                     $attendee->ticket_id = $attendee_details['ticket']['id'];

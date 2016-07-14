@@ -2,7 +2,7 @@
     <!--    Keep this page lean as possible.-->
     <head>
         <title>
-            Ticket(s)
+            Inscrições
         </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
@@ -62,23 +62,22 @@
                         </div>
 
                         <div class="event_details">
-                            <h4>Event</h4>
+                            <h4>Evento</h4>
                             {{$event->title}}
-                            <h4>Organiser</h4>
+                            <h4>Organização</h4>
                             {{$event->organiser->name}}
-                            <h4>Venue</h4>
+                            <h4>Local</h4>
                             {{$event->venue_name}}
-                            <h4>Start Date / Time</h4>
+                            <h4>Data de inicio</h4>
                             {{$event->start_date->format('M dS g:iA')}}
-                            <h4>End Date / Time</h4>
+                            <h4>Data de fim</h4>
                             {{$event->end_date->format('M dS g:iA')}}
                         </div>
 
                         <div class="attendee_details">
-                            <h4>Name</h4>
+                            <h4>Nome</h4>
                             {{$attendee->first_name.' '.$attendee->last_name}}
-
-                            <h4>Ticket Type</h4>
+                            <h4>Tipo</h4>
                             {{$attendee->ticket->title}}
                             <h4>Order Ref.</h4>
                             {{$order->order_reference}}

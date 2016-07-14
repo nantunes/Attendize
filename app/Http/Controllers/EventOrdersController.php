@@ -246,6 +246,7 @@ class EventOrdersController extends MyBaseController
                         'orders.first_name',
                         'orders.last_name',
                         'orders.email',
+                        'orders.phone',
                         'orders.order_reference',
                         'orders.amount',
                         \DB::raw("(CASE WHEN orders.is_refunded = 1 THEN 'YES' ELSE 'NO' END) AS `orders.is_refunded`"),
@@ -259,7 +260,7 @@ class EventOrdersController extends MyBaseController
 
                 // Add headings to first row
                 $sheet->row(1, [
-                    'First Name', 'Last Name', 'Email', 'Order Reference', 'Amount', 'Fully Refunded', 'Partially Refunded', 'Amount Refunded', 'Order Date',
+                    'First Name', 'Last Name', 'E-mail', 'Phone', 'Order Reference', 'Amount', 'Fully Refunded', 'Partially Refunded', 'Amount Refunded', 'Order Date',
                 ]);
 
                 // Set gray background on first row

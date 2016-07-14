@@ -13,19 +13,19 @@
                     </div>
 
                     @if(Session::has('failed'))
-                        <h4 class="text-danger mt0">Whoops! </h4>
+                        <h4 class="text-danger mt0">Ops! </h4>
                         <ul class="list-group">
-                            <li class="list-group-item">Please check your details and try again.</li>
+                            <li class="list-group-item">Por favor verifique os dados e tente de novo.</li>
                         </ul>
                     @endif
 
                     <div class="form-group">
-                        {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+                        {!! Form::label('email', 'E-mail', ['class' => 'control-label']) !!}
                         {!! Form::text('email', null, ['class' => 'form-control', 'autofocus' => true]) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
-                        (<a class="forgotPassword" href="{{route('forgotPassword')}}" tabindex="-1">Forgot password?</a>)
+                        (<a class="forgotPassword" href="{{route('forgotPassword')}}" tabindex="-1">Esqueceu a password?</a>)
                         {!! Form::password('password',  ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
@@ -34,7 +34,7 @@
 
                     @if(Utils::isAttendize())
                     <div class="signup">
-                        <span>Don't have any account? <a class="semibold" href="{{ url('signup') }}">Sign up</a></span>
+                        <span>Não tem conta? <a class="semibold" href="{{ url('signup') }}">Criar</a></span>
                     </div>
                     @endif
                 </div>

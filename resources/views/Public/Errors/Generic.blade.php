@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Whoops!
+            Ops!
         </title>
         <style>
             body {
@@ -21,7 +21,7 @@
     </head>
     <body>
         <div class="missing">
-            <h2>Whoops!</h2>
+            <h2>Ops!</h2>
             {{$message}}
         </div>
     </body>

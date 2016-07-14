@@ -49,9 +49,9 @@
             <span class="massive-icon">
                 <i class="ico ico-checkmark-circle"></i>
             </span>
-            <h1>Thank you for your order!</h1>
+            <h1>Obrigado!</h1>
             <h2>
-                Your <a href="{{route('showOrderTickets', ['order_reference' => $order->order_reference])}}?download=1">tickets</a> and a confirmation email have been sent to you.
+                Receberá um email de confirmação da sua inscrição.
             </h2>
         </div>
     </div>
@@ -69,15 +69,23 @@
                 <div class="order_details well">
                     <div class="row">
                         <div class="col-sm-4 col-xs-6">
-                            <b>First Name</b><br> {{$order->first_name}}
+                            <b>Primeiro nome</b><br> {{$order->first_name}}
                         </div>
 
                         <div class="col-sm-4 col-xs-6">
-                            <b>Last Name</b><br> {{$order->last_name}}
+                            <b>Último nome</b><br> {{$order->last_name}}
                         </div>
 
                         <div class="col-sm-4 col-xs-6">
-                            <b>Amount</b><br> {{$order->event->currency_symbol}}{{number_format($order->total_amount,2)}}
+                            <b>E-mail</b><br> {{$order->email}}
+                        </div>
+
+                        <div class="col-sm-4 col-xs-6">
+                            <b>Telefone</b><br> {{$order->phone}}
+                        </div>
+
+                        <div class="col-sm-4 col-xs-6">
+                            <b>Amount</b><br> {{number_format($order->total_amount,2)}} {{$order->event->currency_symbol}}
                         </div>
 
                         <div class="col-sm-4 col-xs-6">
@@ -85,31 +93,15 @@
                         </div>
 
                         <div class="col-sm-4 col-xs-6">
-                            <b>Date</b><br> {{$order->created_at->toDateTimeString()}}
-                        </div>
-
-                        <div class="col-sm-4 col-xs-6">
-                            <b>Email</b><br> {{$order->email}}
+                            <b>Data da inscrição</b><br> {{$order->created_at->toDateTimeString()}}
                         </div>
                     </div>
                 </div>
 
 
-                    @if(!$order->is_payment_received)
-                        <h3>
-                            Payment Instructions
-                        </h3>
-                    <div class="alert alert-info">
-                        This order is awaiting payment. Please read the below instructions on how to make payment.
-                    </div>
-                    <div class="offline_payment_instructions well">
-                        {!! Markdown::parse($event->offline_payment_instructions) !!}
-                    </div>
-
-                    @endif
-
+                @if(!$order->is_payment_received)
                 <h3>
-                    Order Items
+                    Instruções para pagamento
                 </h3>
 
                 <div class="table-responsive">
@@ -216,9 +208,14 @@
                     </table>
 
                 </div>
+                <div class="offline_payment_instructions well">
+                    {!! Markdown::parse($event->offline_payment_instructions) !!}
+                </div>
+
+                @endif
 
                 <h3>
-                    Order Attendees
+                    Inscrições
                 </h3>
 
                 <div class="table-responsive">
@@ -244,7 +241,6 @@
                         </tbody>
                     </table>
                 </div>
-
 
             </div>
         </div>

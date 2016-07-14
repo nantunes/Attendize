@@ -6,7 +6,7 @@ return [
 
     'ticket_status_sold_out'        => 1,
     'ticket_status_after_sale_date' => 2,//
-    'enable_test_payments'          => env('ENABLE_TEST_PAYMENTS', false),
+    'enable_test_payments'          => env('ENABLE_TEST_PAYMENTS', true),
 
     'payment_gateway_stripe'   => 1,
     'payment_gateway_paypal'   => 2,
@@ -17,7 +17,7 @@ return [
     'outgoing_email_name'    => env('MAIL_FROM_NAME'),
     'incoming_email'         => env('MAIL_FROM_ADDRESS'),
 
-    'app_name'               => 'Attendize Event Ticketing',
+    'app_name'               => 'Inscrições - Família Missionária Verbum Dei',
     'event_default_bg_color' => '#B23333',
     'event_default_bg_image' => 'assets/images/public/EventPage/backgrounds/5.jpg',
 
@@ -60,7 +60,7 @@ return [
     'default_date_picker_format' => 'd M, yyyy',
     'default_datetime_format'    => 'F j, Y, g:i a',
     'default_query_cache'        => 120, #Minutes
-    'default_locale'             => 'en',
+    'default_locale'             => 'pt-PT',
     'default_payment_gateway'    => 1, #Stripe=1 Paypal=2 BitPay=3
 
     'cdn_url_user_assets'   => '',

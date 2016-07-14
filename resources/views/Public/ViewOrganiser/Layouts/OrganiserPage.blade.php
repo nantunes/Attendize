@@ -10,7 +10,7 @@
          /_/    \_\__|\__\___|_| |_|\__,_|_/___\___(_)___\___/|_| |_| |_|
 
         -->
-        <title>{{{$organiser->name}}} - Attendize.com</title>
+        <title>{{{$organiser->name}}} | Família Missionária Verbum Dei – Lisboa</title>
 
 
         <meta charset="utf-8" />
@@ -24,7 +24,7 @@
         <meta property="og:url" content="{{URL::to('')}}" />
         <meta property="og:image" content="{{URL::to($organiser->full_logo_path)}}" />
         <meta property="og:description" content="{{{Str::words(strip_tags($organiser->description)), 20}}}" />
-        <meta property="og:site_name" content="Attendize.com" />
+        <meta property="og:site_name" content="Família Missionária Verbum Dei – Lisboa" />
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -40,7 +40,7 @@
         </div>
 
         <a href="#intro" style="display:none;" class="totop"><i class="ico-angle-up"></i>
-            <span style="font-size:11px;">TOP</span></a>
+            <span style="font-size:11px;">TOPO</span></a>
 
         {!!HTML::script('assets/javascript/frontend.js')!!}
 

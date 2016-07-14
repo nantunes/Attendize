@@ -1,7 +1,7 @@
 @extends('Shared.Layouts.MasterWithoutMenus')
 
 @section('title')
-Forgot Password
+Recuperar Password
 @stop
 
 @section('content')
@@ -15,32 +15,32 @@ Forgot Password
                 <div class="logo">
                    {!!HTML::image('assets/images/logo-dark.png')!!}
                 </div>
-                <h2>Forgot Password</h2>
+                <h2>Recuperar Password</h2>
 
                 @if (Session::has('status'))
                 <div class="alert alert-info">
-                    An email with the password reset has been sent to your email.
+                    Foi enviada uma mensagem para o seu e-mail.
                 </div>
                 @else
 
                 @if(Session::has('error'))
-                <h4 class="text-danger mt0">Whoops! </h4>
+                <h4 class="text-danger mt0">Ops! </h4>
                 <ul class="list-group">
                     <li class="list-group-item">{{Session::get('error')}}</li>
                 </ul>
                 @endif
 
                 <div class="form-group">
-                   {!! Form::label('email', 'Your Email') !!}
+                   {!! Form::label('email', 'E-mail') !!}
                    {!! Form::text('email', null, ['class' => 'form-control', 'autofocus' => true]) !!}
                 </div>
 
                 <div class="form-group nm">
-                    <button type="submit" class="btn btn-block btn-success">Submit</button>
+                    <button type="submit" class="btn btn-block btn-success">Enviar</button>
                 </div>
                 <div class="signup">
                     <a class="semibold" href="{{route('login')}}">
-                        <i class="ico ico-arrow-left"></i> Back to login
+                        <i class="ico ico-arrow-left"></i> Voltar
                     </a>
                 </div>
             </div>

@@ -23,15 +23,15 @@
                             </h2>
                             <p class="desc ellipsis">{{ $event->venue_name }}</p>
                             <ul>
-                                <li style="width:50%;"><a href="{{$event->event_url }}">Tickets</a></li>
-                                <li style="width:50%;"><a href="{{$event->event_url }}">Information</a></li>
+                                <li style="width:50%;"><a href="{{$event->event_url }}">Inscrições</a></li>
+                                <li style="width:50%;"><a href="{{$event->event_url }}">Informação</a></li>
                             </ul>
                         </div>
                     </li>
                 @endforeach
             @else
                 <div class="alert alert-info">
-                    There are no {{ $panel_title }} to display.
+                    Nenhum.
                 </div>
             @endif
 

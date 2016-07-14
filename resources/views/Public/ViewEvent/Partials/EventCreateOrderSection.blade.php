@@ -10,7 +10,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <i class="ico-cart mr5"></i>
-                        Order Summary
+                        Inscrição
                     </h3>
                 </div>
 
@@ -21,7 +21,7 @@
                             <td class="pl0">{{{$ticket['ticket']['title']}}} X <b>{{$ticket['qty']}}</b></td>
                             <td style="text-align: right;">
                                 @if((int)ceil($ticket['full_price']) === 0)
-                                FREE
+                                --
                                 @else
                                 {{ money($ticket['full_price'], $event->currency) }}
                                 @endif
@@ -40,7 +40,7 @@
 
             </div>
             <div class="help-block">
-                Please note you only have <span id='countdown'></span> to complete this transaction before your tickets are re-released.
+                Tem <span id='countdown'></span> para completar a inscrição.
             </div>
         </div>
         <div class="col-md-8 col-md-pull-4">
@@ -49,18 +49,18 @@
 
                 {!! Form::hidden('event_id', $event->id) !!}
 
-                <h3>Your Information</h3>
+                <h3>Informação de contacto</h3>
 
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            {!! Form::label("order_first_name", 'First Name') !!}
+                            {!! Form::label("order_first_name", 'Primeiro nome') !!}
                             {!! Form::text("order_first_name", null, ['required' => 'required', 'class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            {!! Form::label("order_last_name", 'Last Name') !!}
+                            {!! Form::label("order_last_name", 'Último nome') !!}
                             {!! Form::text("order_last_name", null, ['required' => 'required', 'class' => 'form-control']) !!}
                         </div>
                     </div>
@@ -77,14 +77,20 @@
 
                 <div class="p20 pl0">
                     <a href="javascript:void(0);" class="btn btn-primary btn-xs" id="mirror_buyer_info">
-                        Copy buyer details to all ticket holders
+                        Copiar informação de contacto para a primeira inscrição
                     </a>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {!! Form::label("order_phone", 'Telefone') !!}
+                            {!! Form::text("order_phone", null, ['required' => 'required', 'class' => 'form-control']) !!}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="ticket_holders_details" >
-                            <h3>Ticket Holder Information</h3>
+                            <h3>Informação de inscrição</h3>
                             <?php
                                 $total_attendee_increment = 0;
                             ?>
@@ -94,20 +100,20 @@
 
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            <b>{{$ticket['ticket']['title']}}</b>: Ticket Holder {{$i+1}} Details
+                                            <b>{{$ticket['ticket']['title']}} {{$i+1}}</b>
                                         </h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_first_name[{$i}][{$ticket['ticket']['id']}]", 'First Name') !!}
+                                                    {!! Form::label("ticket_holder_first_name[{$i}][{$ticket['ticket']['id']}]", 'Primeiro nome') !!}
                                                     {!! Form::text("ticket_holder_first_name[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_first_name.$i.{$ticket['ticket']['id']} ticket_holder_first_name form-control"]) !!}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_last_name[{$i}][{$ticket['ticket']['id']}]", 'Last Name') !!}
+                                                    {!! Form::label("ticket_holder_last_name[{$i}][{$ticket['ticket']['id']}]", 'Último nome') !!}
                                                     {!! Form::text("ticket_holder_last_name[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_last_name.$i.{$ticket['ticket']['id']} ticket_holder_last_name form-control"]) !!}
                                                 </div>
                                             </div>
@@ -115,8 +121,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", 'Email Address') !!}
-                                                    {!! Form::text("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_email.$i.{$ticket['ticket']['id']} ticket_holder_email form-control"]) !!}
+                                                    {!! Form::label("ticket_holder_age[{$i}][{$ticket['ticket']['id']}]", 'Idade') !!}
+                                                    {!! Form::text("ticket_holder_age[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_age.$i.{$ticket['ticket']['id']} ticket_holder_age form-control"]) !!}
                                                 </div>
                                             </div>
                                             @include('Public.ViewEvent.Partials.AttendeeQuestions', ['ticket' => $ticket['ticket'],'attendee_number' => $total_attendee_increment++])
@@ -141,17 +147,17 @@
 
                 @if($order_requires_payment)
 
-                <h3>Payment Information</h3>
+                <h3>Informação de pagamento</h3>
 
                 @if($event->enable_offline_payments)
                     <div class="offline_payment_toggle">
                         <div class="custom-checkbox">
                             <input data-toggle="toggle" id="pay_offline" name="pay_offline" type="checkbox" value="1">
-                            <label for="pay_offline">Pay using offline method</label>
+                            <label for="pay_offline">Pagamento offline</label>
                         </div>
                     </div>
                     <div class="offline_payment" style="display: none;">
-                        <h5>Offline Payment Instructions</h5>
+                        <h5>Instruções</h5>
                         <div class="well">
                             {!! Markdown::parse($event->offline_payment_instructions) !!}
                         </div>
@@ -165,7 +171,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!! Form::label('card-number', 'Card Number') !!}
+                                    {!! Form::label('card-number', 'Número do cartão') !!}
                                     <input required="required" name="card-number" type="text" autocomplete="off" placeholder="**** **** **** ****" class="form-control card-number" size="20" data-stripe="number">
                                 </div>
                             </div>
@@ -173,7 +179,7 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    {!! Form::label('card-expiry-month', 'Exipry Month') !!}
+                                    {!! Form::label('card-expiry-month', 'Validade (mês)') !!}
                                     {!!  Form::selectRange('card-expiry-month',1,12,null, [
                                             'class' => 'form-control card-expiry-month',
                                             'data-stripe' => 'exp_month'
@@ -182,7 +188,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    {!! Form::label('card-expiry-year', 'Exipry Year') !!}
+                                    {!! Form::label('card-expiry-year', 'Validade (ano)') !!}
                                     {!!  Form::selectRange('card-expiry-year',date('Y'),date('Y')+10,null, [
                                             'class' => 'form-control card-expiry-year',
                                             'data-stripe' => 'exp_year'
@@ -192,7 +198,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!! Form::label('card-expiry-year', 'CVC Number') !!}
+                                    {!! Form::label('card-cvc', 'Código CVC') !!}
                                     <input required="required" name="card-cvc" placeholder="***" class="form-control card-cvc" data-stripe="cvc">
                                 </div>
                             </div>
