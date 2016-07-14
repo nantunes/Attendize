@@ -150,7 +150,8 @@
 
                 <h3>Informação de pagamento</h3>
 
-                @if($event->enable_offline_payments)
+                @if($event->enable_offline_payments || !@$payment_gateway->is_on_site)
+                @if(@$payment_gateway->is_on_site)
                     <div class="offline_payment_toggle">
                         <div class="custom-checkbox">
                             <input data-toggle="toggle" id="pay_offline" name="pay_offline" type="checkbox" value="1">
@@ -158,12 +159,14 @@
                         </div>
                     </div>
                     <div class="offline_payment" style="display: none;">
+                @else
+                    <div class="offline_payment" style="display: block;">
+                @endif
                         <h5>Instruções</h5>
                         <div class="well">
                             {!! Markdown::parse($event->offline_payment_instructions) !!}
                         </div>
                     </div>
-
                 @endif
 
 
