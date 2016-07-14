@@ -28,8 +28,7 @@ $(function() {
                         }
 
                         toggleSubmitDisabled($submitButton);
-                        showMessage('Whoops!, it looks like the server returned an error.\n\
-                   Please try again, or contact the webmaster if the problem persists.');
+                        showMessage('Ops! Algo correu errado. Por favor tente de novo.');
                     },
                     success: function(data, statusText, xhr, $form) {
                         var $submitButton = $form.find('input[type=submit]');
@@ -86,17 +85,17 @@ $(function() {
 
 
             if (!Stripe.validateCardNumber($cardNumber.val())) {
-                showFormError($cardNumber, 'The credit card number appears to be invalid.');
+                showFormError($cardNumber, 'Número de cartão inválido.');
                 noErrors = false;
             }
 
             if (!Stripe.validateCVC($cvcNumber.val())) {
-                showFormError($cvcNumber, 'The CVC number appears to be invalid.');
+                showFormError($cvcNumber, 'Código CVC inválido.');
                 noErrors = false;
             }
 
             if (!Stripe.validateExpiry($expiryMonth.val(), $expiryYear.val())) {
-                showFormError($expiryMonth, 'The expiration date appears to be invalid.');
+                showFormError($expiryMonth, 'Data de validade inválida.');
                 showFormError($expiryYear, '');
                 noErrors = false;
             }
@@ -123,7 +122,7 @@ $(function() {
 
                 });
             } else {
-                showMessage('Please check your card details and try again.');
+                showMessage('Verifique os dados do cartão e tente de novo.');
                 toggleSubmitDisabled($submitButton);
             }
 
@@ -220,7 +219,7 @@ function toggleSubmitDisabled($submitButton) {
     $submitButton.data('original-text', $submitButton.val())
             .attr('disabled', true)
             .addClass('disabled')
-            .val('Just a second...');
+            .val('Aguarde...');
 }
 
 /**
@@ -283,18 +282,18 @@ function setCountdown($element, seconds) {
     function updateTimer() {
         msLeft = endTime - (+new Date);
         if (msLeft < 1000) {
-            alert("You have run out of time! You will have to restart the order process.");
+            alert("Tempo esgotado. Por favor reinicie o processo de inscrição.");
             location.reload();
         } else {
 
             if (msLeft < 120000 && !twoMinWarningShown) {
-                showMessage("You only have 2 minutes left to complete this order!");
+                showMessage("Só tem 1 minuto para completar a inscrição.");
                 twoMinWarningShown = true;
             }
 
             time = new Date(msLeft);
             mins = time.getUTCMinutes();
-            $element.html('<b>' + mins + '</b> minutes and <b>' + twoDigits(time.getUTCSeconds()) + '</b> seconds');
+            $element.html('<b>' + mins + '</b> minutos');
             setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
         }
     }
