@@ -6,12 +6,12 @@
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h3 class="modal-title">
                     <i class="ico-envelope"></i>
-                    Message Attendees</h3>
+                    Mensagens aos inscritos</h3>
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#new_message" data-toggle="tab">New Message</a></li>
-                    <li><a href="#sent_messages" data-toggle="tab">Sent Messages</a></li>
+                    <li class="active"><a href="#new_message" data-toggle="tab">Nova messagem</a></li>
+                    <li><a href="#sent_messages" data-toggle="tab">Messagens enviadas</a></li>
                 </ul>
 
                 <div class="tab-content panel">
@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!! Form::label('subject', 'Message Subject', array('class'=>'control-label required')) !!}
+                                    {!! Form::label('subject', 'Assunto', array('class'=>'control-label required')) !!}
                                     {!!  Form::text('subject', Input::old('subject'),
                                         array(
                                         'class'=>'form-control'
@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {!! Form::label('message', 'Message Content', array('class'=>'control-label required')) !!}
+                                    {!! Form::label('message', 'Messagem', array('class'=>'control-label required')) !!}
                                     {!!  Form::textarea('message', Input::old('message'),
                                         array(
                                         'class'=>'form-control',
@@ -35,10 +35,10 @@
                                         ))  !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('recipients', 'Send To', array('class'=>'control-label required')) !!}
+                                    {!! Form::label('recipients', 'Enviar para', array('class'=>'control-label required')) !!}
                                     {!!  Form::select('recipients', [
-                                            'all' => 'All Event Attendees'
-                                        ] + ['Attendees with ticket type' => $tickets] ,
+                                            'all' => 'Todos os inscritos'
+                                        ] + ['Inscritos como' => $tickets] ,
                                         null, [
                                             'class'=>'form-control'
                                         ])  !!}
@@ -69,12 +69,12 @@
                                             <tr>
                                                 <td style="width: 100px;">
                                                     <h5>
-                                                        <b>Date</b>
+                                                        <b>Data</b>
                                                     </h5>
                                                 </td>
                                                 <td>
                                                     <h5>
-                                                        <b>Message</b>
+                                                        <b>Messagem</b>
                                                     </h5>
                                                 </td>
                                             </tr>
@@ -86,7 +86,7 @@
                                                         <p class="date">{{$message->sent_at->format('M j, Y, g:i a')}}</p>
                                                     </td>
                                                     <td class="message">
-                                                        <h5 class="sender">To: <b>{{$message->recipients_label}}</b></h5>
+                                                        <h5 class="sender">Para: <b>{{$message->recipients_label}}</b></h5>
                                                         <h5 class="heading"><a href="javascript:void();">{{$message->subject}}</a></h5>
 
                                                         <p class="text">{{nl2br($message->message)}}</p>
@@ -102,15 +102,15 @@
                             </div>
                         @else
                             <div class="alert alert-info">
-                                You have not sent any messages for this event.
+                                Não foi enviada nenhuma mensagem.
                             </div>
                         @endif
                     </div>
                 </div>
             </div> <!-- /end modal body-->
             <div class="modal-footer">
-                {!! Form::button('Cancel', ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
-                {!! Form::submit('Send Message', ['class'=>"btn btn-success"]) !!}
+                {!! Form::button('Cancelar', ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
+                {!! Form::submit('Enviar', ['class'=>"btn btn-success"]) !!}
             </div>
         </div><!-- /end modal content-->
         {!! Form::close() !!}

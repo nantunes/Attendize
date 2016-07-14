@@ -33,7 +33,7 @@ class EventViewController extends Controller
 
         $data = [
             'event'       => $event,
-            'tickets'     => $event->tickets()->orderBy('created_at', 'desc')->get(),
+            'tickets'     => $event->tickets()->orderBy('created_at', 'asc')->get(),
             'is_embedded' => 0,
         ];
         /*
