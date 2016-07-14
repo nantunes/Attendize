@@ -43,14 +43,11 @@
 
             <div class="event_buttons">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
                         <a class="btn btn-event-link btn-lg" href="{{{$event->event_url}}}#details">INFORMAÇÃO</a>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
                         <a class="btn btn-event-link btn-lg" href="{{{$event->event_url}}}#tickets">INSCRIÇÃO</a>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <a class="btn btn-event-link btn-lg" href="{{{$event->event_url}}}#location">LOCAL</a>
                     </div>
                 </div>
             </div>

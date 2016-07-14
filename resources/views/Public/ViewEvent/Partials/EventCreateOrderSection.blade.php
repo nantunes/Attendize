@@ -1,7 +1,7 @@
 <section id='order_form' class="container">
     <div class="row">
         <h1 class="section_head">
-            Order Details
+            Inscrição
         </h1>
     </div>
     <div class="row">
@@ -9,8 +9,7 @@
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <i class="ico-cart mr5"></i>
-                        Inscrição
+                        Resumo
                     </h3>
                 </div>
 
@@ -21,7 +20,6 @@
                             <td class="pl0">{{{$ticket['ticket']['title']}}} X <b>{{$ticket['qty']}}</b></td>
                             <td style="text-align: right;">
                                 @if((int)ceil($ticket['full_price']) === 0)
-                                --
                                 @else
                                 {{ money($ticket['full_price'], $event->currency) }}
                                 @endif
@@ -124,8 +122,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_age[{$i}][{$ticket['ticket']['id']}]", 'Idade') !!}
-                                                    {!! Form::text("ticket_holder_age[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_age.$i.{$ticket['ticket']['id']} ticket_holder_age form-control"]) !!}
+                                                    {!! Form::label("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", 'Idade') !!}
+                                                    {!! Form::text("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_email.$i.{$ticket['ticket']['id']} ticket_holder_email form-control"]) !!}
                                                 </div>
                                             </div>
                                             @include('Public.ViewEvent.Partials.AttendeeQuestions', ['ticket' => $ticket['ticket'],'attendee_number' => $total_attendee_increment++])
@@ -212,9 +210,9 @@
 
                 @endif
 
-                @if($event->pre_order_display_message)
+                @if($event->pre_order_display_messemail)
                 <div class="well well-small">
-                    {{ nl2br(e($event->pre_order_display_message)) }}
+                    {{ nl2br(e($event->pre_order_display_messemail)) }}
                 </div>
                 @endif
 
@@ -225,7 +223,7 @@
         </div>
     </div>
 </section>
-@if(session()->get('message'))
-    <script>showMessage('{{session()->get('message')}}');</script>
+@if(session()->get('messemail'))
+    <script>showMessemail('{{session()->get('messemail')}}');</script>
 @endif
 

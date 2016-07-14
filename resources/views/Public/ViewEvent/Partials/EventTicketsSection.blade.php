@@ -1,13 +1,13 @@
 <section id="tickets" class="container">
     <div class="row">
         <h1 class='section_head'>
-            Tickets
+            Inscrição
         </h1>
     </div>
 
     @if($event->start_date->isPast())
     <div class="alert alert-boring">
-        This event has {{($event->end_date->isFuture() ? 'already started' : 'ended')}}.
+        Inscrições encerradas.
     </div>
     @else
 
@@ -35,13 +35,12 @@
                             <td style="width:180px; text-align: right;">
                                 <div class="ticket-pricing" style="margin-right: 20px;">
                                     @if($ticket->is_free)
-                                    FREE
                                     <meta property="price" content="0">
                                     @else
                                         <?php
                                         $is_free_event = false;
                                         ?>
-                                    <span title='{{money($ticket->price, $event->currency)}} Ticket Price + {{money($ticket->total_booking_fee, $event->currency)}} Booking Fees'>{{money($ticket->total_price, $event->currency)}} </span>
+                                    <span title='{{money($ticket->price, $event->currency)}} + {{money($ticket->total_booking_fee, $event->currency)}} taxas'>{{money($ticket->total_price, $event->currency)}} </span>
                                     <meta property="priceCurrency" content="{{ $event->currency->code }}">
                                     <meta property="price" content="{{ number_format($ticket->price, 2, '.', '') }}">
                                     @endif
@@ -51,22 +50,22 @@
                                 @if($ticket->is_paused)
 
                                 <span class="text-danger">
-                                    Currently Not On Sale
+                                    Inscrições suspensas
                                 </span>
 
                                 @else
 
                                 @if($ticket->sale_status === config('attendize.ticket_status_sold_out'))
                                 <span class="text-danger" property="availability" content="http://schema.org/SoldOut">
-                                    Sold Out
+                                    Esgotado
                                 </span>
                                 @elseif($ticket->sale_status === config('attendize.ticket_status_before_sale_date'))
                                 <span class="text-danger">
-                                    Sales Have Not Started
+                                    Inscrições por abrir
                                 </span>
                                 @elseif($ticket->sale_status === config('attendize.ticket_status_after_sale_date'))
                                 <span class="text-danger">
-                                    Sales Have Ended
+                                    Inscrições fechadas
                                 </span>
                                 @else
                                {!! Form::hidden('tickets[]', $ticket->id) !!}
@@ -94,14 +93,14 @@
                                     @if($event->enable_offline_payments)
 
                                     <div class="help-block" style="font-size: 11px;">
-                                        Offline Payment Methods Available
+                                        Disponível pagamento offline
                                     </div>
                                     @endif
 
                                     </div>
 
                                 @endif
-                                {!!Form::submit('Register', ['class' => 'btn btn-lg btn-primary pull-right'])!!}
+                                {!!Form::submit('Inscrever', ['class' => 'btn btn-lg btn-primary pull-right'])!!}
                             </td>
                         </tr>
                     </table>
@@ -115,7 +114,7 @@
     @else
 
     <div class="alert alert-boring">
-        Tickets are currently unavailable.
+        Inscrição não disponível.
     </div>
 
     @endif

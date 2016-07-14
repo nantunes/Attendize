@@ -154,8 +154,10 @@ class EventCheckoutController extends Controller
                  */
                 $validation_rules['ticket_holder_first_name.' . $i . '.' . $ticket_id] = ['required'];
                 $validation_rules['ticket_holder_last_name.' . $i . '.' . $ticket_id] = ['required'];
-                $validation_rules['ticket_holder_age.' . $i . '.' . $ticket_id] = [];
+                $validation_rules['ticket_holder_email.' . $i . '.' . $ticket_id] = ['required', 'email'];
 
+                $validation_messages['ticket_holder_email.' . $i . '.' . $ticket_id . '.required'] = 'Inscrição ' . ($i + 1) . ': Indique o endereço de e-mail';
+                $validation_messages['ticket_holder_email.' . $i . '.' . $ticket_id . '.email'] = 'Inscrição ' . ($i + 1) . ': Endereço de e-mail inválido';
                 $validation_messages['ticket_holder_first_name.' . $i . '.' . $ticket_id . '.required'] = 'Inscrição ' . ($i + 1) . ': Indique o primeiro nome';
                 $validation_messages['ticket_holder_last_name.' . $i . '.' . $ticket_id . '.required'] = 'Inscrição ' . ($i + 1) . ': Indique o último nome';
 
@@ -572,7 +574,7 @@ class EventCheckoutController extends Controller
                     $attendee = new Attendee();
                     $attendee->first_name = $request_data["ticket_holder_first_name"][$i][$attendee_details['ticket']['id']];
                     $attendee->last_name = $request_data["ticket_holder_last_name"][$i][$attendee_details['ticket']['id']];
-                    $attendee->age = $request_data["ticket_holder_age"][$i][$attendee_details['ticket']['id']];
+                    $attendee->email = $request_data["ticket_holder_email"][$i][$attendee_details['ticket']['id']];
                     $attendee->event_id = $event_id;
                     $attendee->order_id = $order->id;
                     $attendee->ticket_id = $attendee_details['ticket']['id'];
