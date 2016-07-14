@@ -1,4 +1,5 @@
 @foreach($ticket->questions->sortBy('sort_order') as $question)
+@if($question->is_enabled == 1)
     <div class="col-md-12">
         <div class="form-group">
             {!! Form::label("ticket_holder_questions[{$ticket->id}][{$i}][$question->id]", $question->title, ['class' => $question->is_required ? 'required' : '']) !!}
@@ -37,4 +38,5 @@
 
         </div>
     </div>
+@endif
 @endforeach
