@@ -1,4 +1,4 @@
-@foreach($ticket->questions->where('is_enabled', 1) as $question)
+@foreach($ticket->questions->where('is_enabled', '=', 1)->sortBy('sort_order') as $question)
     <div class="col-md-12">
         <div class="form-group">
             {!! Form::label("ticket_holder_questions[{$ticket->id}][{$i}][$question->id]", $question->title, ['class' => $question->is_required ? 'required' : '']) !!}
