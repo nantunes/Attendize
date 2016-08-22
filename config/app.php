@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => env('TIMEZONE', 'UTC'),
+    'timezone' => env('TIMEZONE', 'Europe/Lisbon'),
 
     /*
     |--------------------------------------------------------------------------
@@ -237,3 +237,5 @@ return [
 
     ],
 ];
+
+Carbon::setLocale('pt_PT');

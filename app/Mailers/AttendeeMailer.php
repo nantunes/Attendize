@@ -23,12 +23,12 @@ class AttendeeMailer extends Mailer
 
         Mail::send('Mailers.TicketMailer.SendAttendeeTicket', $data, function ($message) use ($attendee) {
             $message->to($attendee->email);
-            $message->subject('Your ticket for the event ' . $attendee->order->event->title);
+            $message->subject('Inscrição em ' . $attendee->order->event->title);
 
-            $file_name = $attendee->reference;
-            $file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $file_name . '.pdf';
+            //$file_name = $attendee->reference;
+            //$file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $file_name . '.pdf';
 
-            $message->attach($file_path);
+            //$message->attach($file_path);
         });
 
     }
@@ -81,12 +81,12 @@ class AttendeeMailer extends Mailer
 
         Mail::queue('Mailers.TicketMailer.SendAttendeeInvite', $data, function ($message) use ($attendee) {
             $message->to($attendee->email);
-            $message->subject('Your ticket for the event ' . $attendee->order->event->title);
+            $message->subject('Inscrição em ' . $attendee->order->event->title);
 
-            $file_name = $attendee->getReferenceAttribute();
-            $file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $file_name . '.pdf';
+            //$file_name = $attendee->getReferenceAttribute();
+            //$file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $file_name . '.pdf';
 
-            $message->attach($file_path);
+            //$message->attach($file_path);
         });
 
     }

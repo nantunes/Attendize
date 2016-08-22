@@ -84,12 +84,13 @@
                             <b>Telefone</b><br> {{$order->phone}}
                         </div>
 
+@if((int)ceil($order->total_amount) > 0)
                         <div class="col-sm-4 col-xs-6">
                             <b>Amount</b><br> {{number_format($order->total_amount,2)}} {{$order->event->currency_symbol}}
                         </div>
-
+@endif
                         <div class="col-sm-4 col-xs-6">
-                            <b>Reference</b><br> {{$order->order_reference}}
+                            <b>Referência</b><br> {{$order->order_reference}}
                         </div>
 
                         <div class="col-sm-4 col-xs-6">
@@ -109,16 +110,16 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Ticket
+                                    Tipo
                                 </th>
                                 <th>
-                                    Quantity
+                                    Quantidade
                                 </th>
                                 <th>
-                                    Price
+                                    Preços
                                 </th>
                                 <th>
-                                    Booking Fee
+                                    Taxas
                                 </th>
                                 <th>
                                     Total
@@ -136,7 +137,7 @@
                                     </td>
                                     <td>
                                         @if((int)ceil($order_item->unit_price) == 0)
-                                        FREE
+                                        --
                                         @else
                                        {{money($order_item->unit_price, $order->event->currency)}}
                                         @endif
@@ -144,7 +145,7 @@
                                     </td>
                                     <td>
                                         @if((int)ceil($order_item->unit_price) == 0)
-                                        -
+                                        --
                                         @else
                                         {{money($order_item->unit_booking_fee, $order->event->currency)}}
                                         @endif
@@ -152,7 +153,7 @@
                                     </td>
                                     <td>
                                         @if((int)ceil($order_item->unit_price) == 0)
-                                        FREE
+                                        --
                                         @else
                                         {{money(($order_item->unit_price + $order_item->unit_booking_fee) * ($order_item->quantity), $order->event->currency)}}
                                         @endif
@@ -168,7 +169,7 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <b>Sub Total</b>
+                                    <b>Total</b>
                                 </td>
                                 <td colspan="2">
                                     {{money($order->total_amount, $order->event->currency)}}
@@ -183,7 +184,7 @@
                                     <td>
                                     </td>
                                     <td>
-                                        <b>Refunded Amount</b>
+                                        <b>Devolvido</b>
                                     </td>
                                     <td colspan="2">
                                         {{money($order->amount_refunded, $order->event->currency)}}

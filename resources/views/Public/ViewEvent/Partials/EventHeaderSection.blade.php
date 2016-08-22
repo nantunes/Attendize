@@ -24,21 +24,32 @@
             <h1 property="name">{{$event->title}}</h1>
             <div class="event_venue">
                 <span property="startDate" content="{{ $event->start_date->toIso8601String() }}">
-                    {{ $event->start_date->format('D d M H:m') }}
+                     @if($event->start_date->diffInHours($event->end_date) <= 12)
+                        {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
+                     @elseif($event->start_date->diffInHours($event->end_date) > 2160)
+                        {{ $event->start_date->format('Y') }}
+                     @else
+                        {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
+                     @endif
                 </span>
                 -
                 <span property="endDate" content="{{ $event->end_date->toIso8601String() }}">
                      @if($event->start_date->diffInHours($event->end_date) <= 12)
-                        {{ $event->end_date->format('H:i A') }}
+                        {{ $event->end_date->format('H:i') }}
+                     @elseif($event->start_date->diffInHours($event->end_date) > 2160)
+                        {{ $event->end_date->format('Y') }}
                      @else
-                        {{ $event->end_date->format('D d M H:i A') }}
+                        {{ $event->end_date->formatLocalized('%A %d %b %H:%M') }}
                      @endif
                 </span>
+             @if($event->start_date->diffInHours($event->end_date) < 2160)
+                {{ $event->end_date->format('Y') }}
                 @
                 <span property="location" typeof="Place">
                     <b property="name">{{$event->venue_name}}</b>
                     <meta property="address" content="{{ urldecode($event->venue_name) }}">
                 </span>
+             @endif
             </div>
 
             <div class="event_buttons">

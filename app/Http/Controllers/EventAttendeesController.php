@@ -445,13 +445,13 @@ class EventAttendeesController extends MyBaseController
                 $message->to($attendee->event->organiser->email, $attendee->event->organiser->name)
                     ->from(config('attendize.outgoing_email_noreply'), $attendee->event->organiser->name)
                     ->replyTo($attendee->event->organiser->email, $attendee->event->organiser->name)
-                    ->subject($data['subject'] . '[ORGANISER COPY]');
+                    ->subject($data['subject'] . '[CÓPIA]');
             });
         }
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Message Successfully Sent',
+            'message' => 'Mensagem enviada',
         ]);
     }
 
@@ -509,7 +509,7 @@ class EventAttendeesController extends MyBaseController
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Message Successfully Sent',
+            'message' => 'Mensagem enviada',
         ]);
     }
 
@@ -714,7 +714,7 @@ class EventAttendeesController extends MyBaseController
                 $message->to($attendee->email, $attendee->full_name)
                     ->from(config('attendize.outgoing_email_noreply'), $attendee->event->organiser->name)
                     ->replyTo($attendee->event->organiser->email, $attendee->event->organiser->name)
-                    ->subject('You\'re ticket has been cancelled');
+                    ->subject('Inscrição cancelada');
             });
         }
 
@@ -754,7 +754,7 @@ class EventAttendeesController extends MyBaseController
                         $message->to($attendee->email, $attendee->full_name)
                             ->from(config('attendize.outgoing_email_noreply'), $attendee->event->organiser->name)
                             ->replyTo($attendee->event->organiser->email, $attendee->event->organiser->name)
-                            ->subject('You have received a refund from ' . $attendee->event->organiser->name);
+                            ->subject('Devolução de ' . $attendee->event->organiser->name);
                     });
                 } else {
                     $error_message = $response->getMessage();
@@ -767,7 +767,7 @@ class EventAttendeesController extends MyBaseController
             }
         }
 
-        if ($error_message) {
+        if (isset($error_message)) {
             return response()->json([
                 'status'  => 'error',
                 'message' => $error_message,

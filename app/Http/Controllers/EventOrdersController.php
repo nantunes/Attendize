@@ -336,13 +336,13 @@ class EventOrdersController extends MyBaseController
                 $message->to($order->event->organiser->email)
                     ->from(config('attendize.outgoing_email_noreply'), $order->event->organiser->name)
                     ->replyTo($order->event->organiser->email, $order->event->organiser->name)
-                    ->subject($data['subject'].' [Organiser copy]');
+                    ->subject($data['subject'].' [CÓPIA]');
             });
         }
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Message Successfully Sent',
+            'message' => 'Mensagem enviada',
         ]);
     }
 

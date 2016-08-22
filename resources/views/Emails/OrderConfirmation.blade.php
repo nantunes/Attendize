@@ -1,38 +1,38 @@
 @extends('Emails.Layouts.Master')
 
 @section('message_content')
-Hello,<br><br>
 
-Your order for the event <b>{{$order->event->title}}</b> was successful.<br><br>
+A sua inscrição em <b>{{$order->event->title}}</b> foi efectuada.<br><br>
 
-Your tickets are attached to this email. You can also view you order details and download your tickets at: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}
+Pode consultar os detalhes da inscrição em: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}
 
+<h3>Detalhes</h3>
+Referência: <b>{{$order->order_reference}}</b><br>
+Nome: <b>{{$order->full_name}}</b><br>
+Data: <b>{{$order->created_at->toDayDateTimeString()}}</b><br>
+E-mail: <b>{{$order->email}}</b><br>
 
-<h3>Order Details</h3>
-Order Reference: <b>{{$order->order_reference}}</b><br>
-Order Name: <b>{{$order->full_name}}</b><br>
-Order Date: <b>{{$order->created_at->toDayDateTimeString()}}</b><br>
-Order Email: <b>{{$order->email}}</b><br>
-
-<h3>Order Items</h3>
+<h3>Inscrições</h3>
 <div style="padding:10px; background: #F9F9F9; border: 1px solid #f1f1f1;">
     <table style="width:100%; margin:10px;">
         <tr>
             <td>
-                <b>Ticket</b>
+                <b>Tipo</b>
             </td>
             <td>
-                <b>Qty.</b>
+                <b>Quantidade</b>
+            </td>
+@if((int)ceil($order->amount) > 0)
+            <td>
+                <b>Preço</b>
             </td>
             <td>
-                <b>Price</b>
-            </td>
-            <td>
-                <b>Fee</b>
+                <b>Taxas</b>
             </td>
             <td>
                 <b>Total</b>
             </td>
+@endif
         </tr>
         @foreach($order->orderItems as $order_item)
                                 <tr>
@@ -42,32 +42,20 @@ Order Email: <b>{{$order->email}}</b><br>
                                     <td>
                                         {{$order_item->quantity}}
                                     </td>
+@if((int)ceil($order_item->unit_price) > 0)
                                     <td>
-                                        @if((int)ceil($order_item->unit_price) == 0)
-                                        FREE
-                                        @else
                                        {{money($order_item->unit_price, $order->event->currency)}}
-                                        @endif
-
                                     </td>
                                     <td>
-                                        @if((int)ceil($order_item->unit_price) == 0)
-                                        -
-                                        @else
                                         {{money($order_item->unit_booking_fee, $order->event->currency)}}
-                                        @endif
-
                                     </td>
                                     <td>
-                                        @if((int)ceil($order_item->unit_price) == 0)
-                                        FREE
-                                        @else
                                         {{money(($order_item->unit_price + $order_item->unit_booking_fee) * ($order_item->quantity), $order->event->currency)}}
-                                        @endif
-
                                     </td>
+@endif
                                 </tr>
                                 @endforeach
+@if((int)ceil($order->amount) > 0)
         <tr>
             <td>
             </td>
@@ -76,16 +64,16 @@ Order Email: <b>{{$order->email}}</b><br>
             <td>
             </td>
             <td>
-                <b>Sub Total</b>
+                <b>Total</b>
             </td>
             <td colspan="2">
                {{money($order->amount + $order->order_fee, $order->event->currency)}}
             </td>
         </tr>
+@endif
     </table>
 
     <br><br>
 </div>
-<br><br>
-Thank you
+
 @stop

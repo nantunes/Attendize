@@ -1,4 +1,6 @@
 <?php
+setlocale(LC_TIME, "pt_PT");
+date_default_timezone_set("Europe/Lisbon");
 
 define('LARAVEL_START', microtime(true));
 

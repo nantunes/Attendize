@@ -84,7 +84,7 @@
 
                 <div class="p20 pl0">
                     <a href="javascript:void(0);" class="btn btn-primary btn-xs" id="mirror_buyer_info">
-                        Copiar informação de contacto para a primeira inscrição
+                        Copiar informação de contacto para a informação de inscrição
                     </a>
                 </div>
 
@@ -101,7 +101,11 @@
 
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            <b>{{$ticket['ticket']['title']}} {{$i+1}}</b>
+                                            <b>{{$ticket['ticket']['title']}}
+@if($ticket['qty'] > 1)
+{{$i+1}}
+@endif
+</b>
                                         </h3>
                                     </div>
                                     <div class="panel-body">

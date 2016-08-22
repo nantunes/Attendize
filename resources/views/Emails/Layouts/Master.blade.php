@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>
         @section('subject')
-            Attendize.com Email
+            Família Missionária Verbum Dei – Lisboa
         @show
     </title>
 </head>

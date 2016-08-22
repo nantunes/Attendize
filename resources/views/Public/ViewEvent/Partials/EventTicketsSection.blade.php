@@ -1,9 +1,20 @@
+@php
+$direct = true;
+foreach($tickets as $ticket) {
+    if($ticket->min_per_person != $ticket->max_per_person) {
+        $direct = false;
+        break;
+    }
+}
+@endphp
 <section id="tickets" class="container">
+@if(!$direct)
     <div class="row">
         <h1 class='section_head'>
             Inscrição
         </h1>
     </div>
+@endif
 
     @if($event->start_date->isPast())
     <div class="alert alert-boring">
@@ -18,12 +29,20 @@
         <div class="col-md-12">
             <div class="content">
                 <div class="tickets_table_wrap">
+@if(!$direct)
                     <table class="table">
+@else
+                    <table class="table" style="margin-bottom: 0;">
+@endif
                         <?php
                          $is_free_event = true;
                         ?>
                         @foreach($tickets as $ticket)
+@if(!$direct)
                         <tr class="ticket" property="offers" typeof="Offer">
+@else
+                        <tr class="ticket" property="offers" typeof="Offer" style="display: none;">
+@endif
                             <td>
                                 <span class="ticket-title semibold" property="name">
                                     {{$ticket->title}}
@@ -86,7 +105,11 @@
                         @endforeach
 
                         <tr class="checkout">
+@if(!$direct)
                             <td colspan="3">
+@else
+                            <td colspan="3" style="padding: 0; border: 0;">
+@endif
                                 @if(!$is_free_event)
                                     <div class="hidden-xs pull-left">
                                     <img class="" src="{{asset('assets/images/public/EventPage/credit-card-logos.png')}}" />

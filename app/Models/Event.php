@@ -228,12 +228,14 @@ class Event extends MyBaseModel
      */
     public function getSurveyAnswersAttribute()
     {
+        $local_questions = $this->questions->sortBy('sort_order');
+
         $rows[] = array_merge([
-            'Order Ref',
-            'Attendee Name',
-            'Attendee Email',
-            'Attendee Ticket'
-        ], $this->questions->lists('title')->toArray());
+            'Ref. Inscrição',
+            'Tipo',
+            'Nome',
+            'Email'
+        ], $local_questions->lists('title')->toArray());
 
         $attendees = $this->attendees()->has('answers')->get();
 
@@ -241,10 +243,9 @@ class Event extends MyBaseModel
 
             $answers = [];
 
-            foreach ($this->questions as $question) {
-
+            foreach ($local_questions as $question) {
                 if (in_array($question->id, $attendee->answers->lists('question_id')->toArray())) {
-                    $answers[] = $attendee->answers->where('question_id', $question->id)->first()->answer_text;
+                    $answers[] = $attendee->answers->where('question_id', "".$question->id)->first()->answer_text;
                 } else {
                     $answers[] = null;
                 }
@@ -253,9 +254,9 @@ class Event extends MyBaseModel
 
             $rows[] = array_merge([
                 $attendee->order->order_reference,
+                $attendee->ticket->title,
                 $attendee->full_name,
-                $attendee->email,
-                $attendee->ticket->title
+                $attendee->email
             ], $answers);
 
         }
