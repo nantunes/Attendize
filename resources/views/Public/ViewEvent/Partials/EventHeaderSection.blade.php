@@ -42,8 +42,7 @@
                         {{ $event->end_date->formatLocalized('%A %d %b %H:%M') }}
                      @endif
                 </span>
-             @if($event->start_date->diffInHours($event->end_date) < 2160)
-                {{ $event->end_date->format('Y') }}
+             @if($event->venue_name != null && $event->venue_name != '')
                 @
                 <span property="location" typeof="Place">
                     <b property="name">{{$event->venue_name}}</b>
