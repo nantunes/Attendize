@@ -166,7 +166,6 @@
                 @else
                     <div class="offline_payment" style="display: block;">
                 @endif
-                        <h5>Instruções</h5>
                         <div class="well">
                             {!! Markdown::parse($event->offline_payment_instructions) !!}
                         </div>
