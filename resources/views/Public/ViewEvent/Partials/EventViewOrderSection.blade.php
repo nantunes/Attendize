@@ -51,7 +51,7 @@
             </span>
             <h1>Obrigado!</h1>
             <h2>
-                Receberá um email de confirmação da sua inscrição.
+                A sua inscrição foi efectuada.
             </h2>
         </div>
     </div>
@@ -86,7 +86,7 @@
 
 @if((int)ceil($order->total_amount) > 0)
                         <div class="col-sm-4 col-xs-6">
-                            <b>Amount</b><br> {{number_format($order->total_amount,2)}} {{$order->event->currency_symbol}}
+                            <b>Valor</b><br> {{number_format($order->total_amount,2)}} {{$order->event->currency_symbol}}
                         </div>
 @endif
                         <div class="col-sm-4 col-xs-6">
