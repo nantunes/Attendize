@@ -24,7 +24,7 @@
             <h1 property="name">{{$event->title}}</h1>
             <div class="event_venue">
                 <span property="startDate" content="{{ $event->start_date->toIso8601String() }}">
-                                    {{ $event->start_date->format('D d M H:m') }}
+                                    {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
                      @if($event->start_date->diffInHours($event->end_date) <= 12)
                         {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
                      @elseif($event->start_date->diffInHours($event->end_date) > 2160)
