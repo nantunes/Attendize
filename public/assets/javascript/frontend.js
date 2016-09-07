@@ -4600,7 +4600,7 @@ function log() {
                     },
                     success: function(data, statusText, xhr, $form) {
                         var $submitButton = $form.find('input[type=submit]');
-                        
+
                         if (data.message) {
                             showMessage(data.message);
                         }
@@ -4726,7 +4726,7 @@ function log() {
     $('#mirror_buyer_info').on('click', function(e) {
         $('.ticket_holder_first_name').first().val($('#order_first_name').val());
         $('.ticket_holder_last_name').first().val($('#order_last_name').val());
-        $('.ticket_holder_email').val($('#order_email').val());
+        $('.ticket_holder_email').first().val($('#order_email').val());
     });
 
     $('.card-number').payment('formatCardNumber');
@@ -4771,7 +4771,7 @@ function processFormErrors($form, errors)
 }
 
 /**
- * Toggle a submit button disabled/enabled - duh!
+ * Toggle a submit button disabled/enabled
  *
  * @param element $submitButton
  * @returns void
