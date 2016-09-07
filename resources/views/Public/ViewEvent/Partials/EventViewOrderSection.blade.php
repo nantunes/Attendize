@@ -227,7 +227,9 @@
                                 <td>
                                     {{$attendee->first_name}}
                                     {{$attendee->last_name}}
+@if(trim($attendee->email) != '')
                                     (<a href="mailto:{{$attendee->email}}">{{$attendee->email}}</a>)
+@endif
                                 </td>
                                 <td>
                                     {{{$attendee->ticket->title}}}
