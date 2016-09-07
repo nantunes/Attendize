@@ -110,7 +110,7 @@ foreach($tickets as $ticket) {
 @else
                             <td colspan="3" style="padding: 0; border: 0;">
 @endif
-                                @if(!$is_free_event)
+                                @if(false && !$is_free_event)
                                     <div class="hidden-xs pull-left">
                                     <img class="" src="{{asset('assets/images/public/EventPage/credit-card-logos.png')}}" />
                                     @if($event->enable_offline_payments)
