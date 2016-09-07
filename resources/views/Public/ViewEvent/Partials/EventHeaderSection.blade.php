@@ -24,23 +24,26 @@
             <h1 property="name">{{$event->title}}</h1>
             <div class="event_venue">
                 <span property="startDate" content="{{ $event->start_date->toIso8601String() }}">
-                                    {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
                      @if($event->start_date->diffInHours($event->end_date) <= 12)
-                        {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
+                        {{ $event->start_date->formatLocalized('%A %d %B, %H:%M') }}
+                     @elseif($event->start_date->diffInHours($event->end_date) <= 120)
+                        {{ $event->start_date->formatLocalized('%a %d %b %H:%M') }}
                      @elseif($event->start_date->diffInHours($event->end_date) > 2160)
                         {{ $event->start_date->format('Y') }}
                      @else
-                        {{ $event->start_date->formatLocalized('%A %d %b %H:%M') }}
+                        {{ $event->start_date->formatLocalized('%d %B %H:%M') }}
                      @endif
                 </span>
                 -
                 <span property="endDate" content="{{ $event->end_date->toIso8601String() }}">
                      @if($event->start_date->diffInHours($event->end_date) <= 12)
                         {{ $event->end_date->format('H:i') }}
+                     @elseif($event->start_date->diffInHours($event->end_date) <= 120)
+                        {{ $event->end_date->formatLocalized('%a %d %b %H:%M') }}
                      @elseif($event->start_date->diffInHours($event->end_date) > 2160)
                         {{ $event->end_date->format('Y') }}
                      @else
-                        {{ $event->end_date->formatLocalized('%A %d %b %H:%M') }}
+                        {{ $event->end_date->formatLocalized('%d %b %H:%M') }}
                      @endif
                 </span>
              @if($event->venue_name != null && $event->venue_name != '' && $event->start_date->diffInHours($event->end_date) < 2160)
