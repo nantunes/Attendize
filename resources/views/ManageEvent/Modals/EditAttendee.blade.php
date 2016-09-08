@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!! Form::label('email', 'Email', array('class'=>'control-label required')) !!}
+                                    {!! Form::label('email', 'Email', array('class'=>'control-label')) !!}
 
                                     {!!  Form::text('email', Input::old('email'),
                                             array(

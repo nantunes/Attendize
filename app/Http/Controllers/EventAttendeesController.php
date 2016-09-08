@@ -631,7 +631,7 @@ class EventAttendeesController extends MyBaseController
         $rules = [
             'first_name' => 'required',
             'ticket_id'  => 'required|exists:tickets,id,account_id,' . Auth::user()->account_id,
-            'email'      => 'required|email',
+            'email'      => 'email',
         ];
 
         $messages = [
